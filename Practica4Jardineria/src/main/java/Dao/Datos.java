@@ -10,8 +10,8 @@ public class Datos {
 	public Datos() {
 		this.driver = "com.mysql.jdbc.Driver";
 		this.url = "jdbc:mysql://localhost:3306/jardineria";
-		this.user = "jardineria";
-		this.pass = "jardineria123";
+		this.user = "root";
+		this.pass = "admin";
 	}
 
 	public String getDriver() {

@@ -1,8 +1,8 @@
-package JardineriaTest;
+package Model;
 
 import java.util.*;
 
-public class pedido {
+public class Pedido {
 
 	private int codigoPedido;
 	private Calendar fechaPedido;
@@ -13,10 +13,10 @@ public class pedido {
 	private int codigoCliente;
 
 
-	public pedido() {
+	public Pedido() {
 	}
 
-	public pedido(int codigoPedido, Calendar fechaPedido, Calendar fechaEsperada, Calendar fechaEntrega, String estado,
+	public Pedido(int codigoPedido, Calendar fechaPedido, Calendar fechaEsperada, Calendar fechaEntrega, String estado,
 			String comentarios, int codigoCliente) {
 		this.codigoPedido = codigoPedido;
 		this.fechaPedido = fechaPedido;
@@ -27,7 +27,7 @@ public class pedido {
 		this.codigoCliente = codigoCliente;
 	}
 
-	public pedido(int codigoPedido, Calendar fechaPedido, Calendar fechaEsperada, int codigoCliente) {
+	public Pedido(int codigoPedido, Calendar fechaPedido, Calendar fechaEsperada, int codigoCliente) {
 		this.codigoPedido = codigoPedido;
 		this.fechaPedido = fechaPedido;
 		this.fechaEntrega = fechaEsperada;

@@ -1,7 +1,7 @@
 package Dao;
 
 import java.util.*;
-import JardineriaTest.*;
+import Model.*;
 
 import java.sql.Connection;
 
@@ -12,11 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clienteDao implements Dao {
+public class ClienteDao implements DAO<Cliente> {
 	Datos db = new Datos();
 
 	public String insert(Object obj) {
-		cliente client = (cliente) obj;
+		Cliente client = (Cliente) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "INSERT INTO cliente VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -56,7 +56,7 @@ public class clienteDao implements Dao {
 
 	@Override
 	public String delete(Object obj) {
-		cliente client = (cliente) obj;
+		Cliente client = (Cliente) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "DELETE FROM cliente WHERE codigoCliente=?";
@@ -85,7 +85,7 @@ public class clienteDao implements Dao {
 
 	@Override
 	public String update(Object obj) {
-		cliente client = (cliente) obj;
+		Cliente client = (Cliente) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "UPDATE cliente SET nombreCliente=?, nombreContacto=?,  "
@@ -127,8 +127,8 @@ public class clienteDao implements Dao {
 	}
 
 	@Override
-	public List<cliente> read() {
-		List<cliente> data = new ArrayList<>();
+	public List<Cliente> read() {
+		List<Cliente> data = new ArrayList<>();
 		Connection connection;
 		PreparedStatement pst;
 		ResultSet resultSet;
@@ -143,7 +143,7 @@ public class clienteDao implements Dao {
 			resultSet = pst.executeQuery();
 
 			while (resultSet.next()) {
-				data.add(new cliente(resultSet.getInt("codigoCliente"), resultSet.getString("nombreCliente"),
+				data.add(new Cliente(resultSet.getInt("codigoCliente"), resultSet.getString("nombreCliente"),
 						resultSet.getString("nombreContacto"), resultSet.getString("apellidoContacto"),
 						resultSet.getString("telefono"), resultSet.getString("fax"),
 						resultSet.getString("lineaDireccion1"), resultSet.getString("lineaDireccion2"),
@@ -163,8 +163,8 @@ public class clienteDao implements Dao {
 	}
 
 	@Override
-	public List<cliente> filter(String field, String searchCriteria) {
-		List<cliente> data = new ArrayList<>();
+	public List<Cliente> filter(String field, String searchCriteria) {
+		List<Cliente> data = new ArrayList<>();
 		Connection connection;
 		PreparedStatement pst;
 		ResultSet resultSet;
@@ -179,7 +179,7 @@ public class clienteDao implements Dao {
 			resultSet = pst.executeQuery();
 
 			while (resultSet.next()) {
-				data.add(new cliente(resultSet.getInt("codigoCliente"), resultSet.getString("nombreCliente"),
+				data.add(new Cliente(resultSet.getInt("codigoCliente"), resultSet.getString("nombreCliente"),
 						resultSet.getString("nombreContacto"), resultSet.getString("apellidoContacto"),
 						resultSet.getString("telefono"), resultSet.getString("fax"),
 						resultSet.getString("lineaDireccion1"), resultSet.getString("lineaDireccion2"),
@@ -198,9 +198,9 @@ public class clienteDao implements Dao {
 
 	}
 
-	public cliente getClient(int codigo) {
-		List<cliente> data = new ArrayList<>();
-		for (cliente client : data) {
+	public Cliente getClient(int codigo) {
+		List<Cliente> data = new ArrayList<>();
+		for (Cliente client : data) {
 			if (client.getCodigoCliente() == codigo) {
 				return client;
 			}
@@ -208,8 +208,22 @@ public class clienteDao implements Dao {
 		return null;
 	}
 
-	public List<cliente> getAll() {
-		List<cliente> data = new ArrayList<>();
+	public List<Cliente> getAll() {
+		List<Cliente> data = new ArrayList<>();
 		return data;
 	}
+
+	@Override
+	public Cliente get(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void create(Cliente t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

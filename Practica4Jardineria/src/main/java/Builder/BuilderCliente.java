@@ -5,19 +5,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import errores.*;
-import Dao.clienteDao;
-import JardineriaTest.*;
-import JardineriaTest.cliente.DocumentType;
+import Dao.ClienteDao;
+import Model.*;
+import Model.Cliente.DocumentType;
 
 public class BuilderCliente {
 
-	public static cliente buildClient(int codigoCliente, String nombreCliente, String apellidoContacto, String telefono,
+	public static Cliente buildClient(int codigoCliente, String nombreCliente, String apellidoContacto, String telefono,
 			DocumentType documentType, String DNI, String email, String password) throws Exception {
 
-		clienteDao clienteDao = new clienteDao();
-		List<cliente> clienteList = clienteDao.getAll();
+		ClienteDao clienteDao = new ClienteDao();
+		List<Cliente> clienteList = clienteDao.getAll();
 
-		for (cliente allClient : clienteList) {
+		for (Cliente allClient : clienteList) {
 			if (codigoCliente == allClient.getCodigoCliente()) {
 				throw new MismoCodigo();
 			} else if (allClient.getApellidoContacto().equalsIgnoreCase(apellidoContacto)
@@ -68,7 +68,7 @@ public class BuilderCliente {
 			throw new EmailNoExiste();
 		}
 
-		return new cliente(codigoCliente, nombreCliente, apellidoContacto, telefono, documentType, DNI, email,
+		return new Cliente(codigoCliente, nombreCliente, apellidoContacto, telefono, documentType, DNI, email,
 				password);
 
 	}

@@ -2,14 +2,14 @@ package Dao;
 
 import java.util.*;
 import java.sql.*;
-import JardineriaTest.*;
+import Model.*;
 
-public class pedidosDao implements Dao {
+public class PedidosDao implements DAO<Pedido> {
 	Datos db = new Datos();
 
 	@Override
 	public String insert(Object obj) {
-		pedido pedido = (pedido) obj;
+		Pedido pedido = (Pedido) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "INSERT INTO pedido VALUES(?,?,?,?,?,?,?)";
@@ -40,7 +40,7 @@ public class pedidosDao implements Dao {
 
 	@Override
 	public String delete(Object obj) {
-		pedido pedido = (pedido) obj;
+		Pedido pedido = (Pedido) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "DELETE FROM pedido WHERE codigoPedido=?";
@@ -66,7 +66,7 @@ public class pedidosDao implements Dao {
 
 	@Override
 	public String update(Object obj) {
-		pedido pedido = (pedido) obj;
+		Pedido pedido = (Pedido) obj;
 		Connection connection;
 		PreparedStatement pst;
 		String sql = "UPDATE pedido SET fechaPedido=?, fechaEsperada=?,"
@@ -97,8 +97,8 @@ public class pedidosDao implements Dao {
 	}
 
 	@Override
-	public List<pedido> read() {
-		List<pedido> data = new ArrayList<>();
+	public List<Pedido> read() {
+		List<Pedido> data = new ArrayList<>();
 		Connection connection;
 		PreparedStatement pst;
 		ResultSet resultSet;
@@ -130,8 +130,8 @@ public class pedidosDao implements Dao {
 	}
 
 	@Override
-	public List<pedido> filter(String field, String searchCriteria) {
-		List<pedido> data = new ArrayList<>();
+	public List<Pedido> filter(String field, String searchCriteria) {
+		List<Pedido> data = new ArrayList<>();
 		Connection connection;
 		PreparedStatement pst;
 		ResultSet resultSet;
@@ -160,15 +160,33 @@ public class pedidosDao implements Dao {
 		return data;
 	}
 
-	public pedido getPedido(int codigoPedido) {
-		List<pedido> data = new ArrayList<>();
-		for (pedido pedido : data) {
+	public Pedido getPedido(int codigoPedido) {
+		List<Pedido> data = new ArrayList<>();
+		for (Pedido pedido : data) {
 			if (pedido.getCodigoPedido() == codigoPedido) {
 				return pedido;
 			}
 		}
 
 		return null;
+	}
+
+	@Override
+	public Pedido get(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Pedido> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void create(Pedido t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

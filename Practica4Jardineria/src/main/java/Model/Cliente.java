@@ -1,6 +1,6 @@
-package JardineriaTest;
+package Model;
 
-public class cliente {
+public class Cliente {
 
 	public enum DocumentType {
 		DNI("DNI"), NIE("NIE");
@@ -36,10 +36,10 @@ public class cliente {
 	private String mail;
 	private String password;
 
-	public cliente() {
+	public Cliente() {
 	}
 
-	public cliente(int codigoCliente, String nombreCliente, String nombreContacto, String apellidoContacto,
+	public Cliente(int codigoCliente, String nombreCliente, String nombreContacto, String apellidoContacto,
 			String telefono, String fax, String lineaDireccion1, String lineaDireccion2, String ciudad, String region,
 			String pais, String codigoPostal, int codigoEmpleadoRepVentas, int limiteCredito, String dNI, String mail,
 			String password) {
@@ -62,7 +62,7 @@ public class cliente {
 		this.password = password;
 	}
 
-	public cliente(int codigoCliente, String nombreContacto, String apellidoContacto, String telefono,
+	public Cliente(int codigoCliente, String nombreContacto, String apellidoContacto, String telefono,
 			DocumentType documentType, String dNI, String mail, String password) {
 
 		this.codigoCliente = codigoCliente;

@@ -1,41 +1,58 @@
 package Builder;
 
-import JardineriaTest.pedido;
 import errores.*;
 import java.util.*;
 
-import Dao.pedidosDao;
+import Dao.ClienteDao;
+import Dao.PedidosDao;
+import Model.Cliente;
+import Model.Pedido;
 
 public class BuilderPedido {
-	public static pedido build(int codigoPedido, Date fechaPedido, Date fechaEsperada, int codigoCliente)
-			throws PedidoHoy, MasTresDias, ClienteNoExiste {
+	public static Pedido build(int codigoPedido, Calendar  fechaPedido, Calendar  fechaEsperada, int codigoCliente)
+			throws Exception {
 
-		pedidosDao pedidosDao = new pedidosDao();
-
-		pedido pedido = new pedido();
+		Calendar fechaActual = new GregorianCalendar();
+		Calendar fechaMinimaEsperada = new GregorianCalendar();
+		fechaMinimaEsperada = fechaPedido;
 		
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DATE, -3);
 		
-		Date fecha = new Date();
-		Date fecha2 = new Date();
-		fecha2=c.getTime();
+		if ((fechaPedido.get(Calendar.DAY_OF_MONTH) == fechaActual.get(Calendar.DAY_OF_MONTH))
+				&&  (fechaPedido.get(Calendar.MONTH) == fechaActual.get(Calendar.MONTH))
+				&& (fechaPedido.get(Calendar.YEAR) == fechaPedido.get(Calendar.YEAR))) 
+		{	
+			
+		} else throw new Exception();
 		
-
-		if (fechaPedido != fecha) {
-			throw new PedidoHoy();
+		fechaMinimaEsperada.add(Calendar.DAY_OF_MONTH, 3);
+		
+		if (fechaEsperada.before(fechaMinimaEsperada)) 
+		{
+			throw new Exception();
 		}
 		
-		/*
-		if(fechaEsperada = fecha2) {
-			throw new MasTresDias();
+		fechaMinimaEsperada.add(Calendar.DAY_OF_MONTH, -3);
+		
+		ClienteDao clientDAO = new ClienteDao();
+		
+		boolean clientExist = false;
+		
+		List <Cliente> clientesSaved = clientDAO.getAll();
+		
+		for (Cliente clienteSaved: clientesSaved) {
+			if (codigoCliente == clienteSaved.getCodigoCliente()) {
+				clientExist = true;
+			}
 		}
-		*/
-
-		if (pedidosDao.getPedido(codigoCliente) == null) {
-			throw new ClienteNoExiste();
+		
+		if (clientExist == false) {
+			throw new Exception();
 		}
-
-		return pedido;
+		
+		return new Pedido(codigoPedido, 
+					     fechaPedido,
+					     fechaEsperada, 
+					     codigoCliente);
+		
 	}
 }
